@@ -6,7 +6,7 @@ const Signup = () => {
   const [username, setUserame] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [gender, setGender] = useState("male");
+  const [gender, setGender] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
