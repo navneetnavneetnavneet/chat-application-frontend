@@ -107,13 +107,13 @@ const Signup = () => {
             </span>
           </div>
           <button className="text-base font-semibold text-white w-full px-4 py-2 mt-1 rounded-md bg-blue-600">
-            Sign up
+            Sign in
           </button>
         </form>
-        <span className="w-full text-center block">
+        <span className="w-full text-center text-sm block">
           Already have an account?{" "}
-          <Link to="/signin" className="text-blue-600">
-            Signin
+          <Link to="/signin" className="text-blue-600 font-semibold">
+            Sign in
           </Link>
         </span>
       </div>
