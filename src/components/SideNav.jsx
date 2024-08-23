@@ -1,7 +1,11 @@
 import React from "react";
 import Users from "./Users";
+import { useDispatch } from "react-redux";
+import { asyncSignoutUser } from "../store/actions/userActions";
 
 const SideNav = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="w-[25%] h-full bg-white">
       <div className="w-full h-[10vh] flex bg-zinc-400">
@@ -17,7 +21,10 @@ const SideNav = () => {
         </form>
       </div>
       <Users />
-      <button className="ml-2 mt-5 py-2 px-6 rounded-md text-lg font-semibold bg-zinc-400">
+      <button
+        onClick={() => dispatch(asyncSignoutUser())}
+        className="ml-2 mt-5 py-2 px-6 rounded-md text-lg font-semibold bg-zinc-400"
+      >
         Logout
       </button>
     </div>

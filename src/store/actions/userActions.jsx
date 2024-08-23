@@ -22,7 +22,7 @@ export const asyncSignupUser =
         password,
         gender,
       });
-      console.log(data);
+      //   console.log(data);
 
       dispatch(asyncLoadUser());
     } catch (error) {
@@ -38,10 +38,19 @@ export const asyncSigninUser =
         email,
         password,
       });
-      console.log(data);
+      //   console.log(data);
 
       dispatch(asyncLoadUser());
     } catch (error) {
       console.log(error.response.data);
     }
   };
+
+export const asyncSignoutUser = () => async (dispatch, getState) => {
+  try {
+    const { data } = await axios.get("/signout");
+    dispatch(removeUser());
+  } catch (error) {
+    console.log(error.response.data);
+  }
+};
