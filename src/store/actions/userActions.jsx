@@ -1,5 +1,5 @@
 import axios from "../../utils/axios";
-import { loadUser, removeUser } from "../reducers/userSlice";
+import { loadUser, removeUser, allUser } from "../reducers/userSlice";
 
 export const asyncLoadUser = () => async (dispatch, getState) => {
   try {
@@ -50,6 +50,15 @@ export const asyncSignoutUser = () => async (dispatch, getState) => {
   try {
     const { data } = await axios.get("/signout");
     dispatch(removeUser());
+  } catch (error) {
+    console.log(error.response.data);
+  }
+};
+
+export const asyncGetAllUser = () => async (dispatch, getState) => {
+  try {
+    const { data } = await axios.get("/");
+    dispatch(allUser(data.alluser));
   } catch (error) {
     console.log(error.response.data);
   }

@@ -3,7 +3,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import Signup from "./components/Signup";
 import Signin from "./components/Signin";
-import { asyncLoadUser } from "./store/actions/userActions";
+import { asyncGetAllUser, asyncLoadUser } from "./store/actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
@@ -11,10 +11,9 @@ const App = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useSelector((state) => state.userReducer);
 
-  console.log(user);
-
   useEffect(() => {
     dispatch(asyncLoadUser());
+    dispatch(asyncGetAllUser());
 
     isAuthenticated && navigate("/");
     !isAuthenticated && navigate("/signin");
