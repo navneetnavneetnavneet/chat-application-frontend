@@ -10,7 +10,7 @@ const MessageInput = () => {
           className="w-full px-4 py-3 rounded-md text-lg font-semibold outline-none border-none"
         />
         <button className="absolute right-0 px-4 py-3 rounded-md text-lg font-semibold">
-          <i class="ri-send-plane-2-fill"></i>
+          <i className="ri-send-plane-2-fill"></i>
         </button>
       </form>
     </div>

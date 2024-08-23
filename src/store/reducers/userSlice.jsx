@@ -10,11 +10,11 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     loadUser: (state, action) => {
-      state.initialState = action.payload;
+      state.user = action.payload;
       state.isAuthenticated = true;
     },
     removeUser: (state, action) => {
-      state.initialState = null;
+      state.user = null;
       state.isAuthenticated = false;
     },
   },

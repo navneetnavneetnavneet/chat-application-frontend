@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { asyncSigninUser } from "../store/actions/userActions";
 
 const Signin = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,7 +17,8 @@ const Signin = () => {
       email,
       password,
     };
-    console.log(user);
+    dispatch(asyncSigninUser(user));
+    navigate("/");
   };
 
   return (
