@@ -4,6 +4,7 @@ const initialState = {
   user: null,
   isAuthenticated: false,
   allUser: null,
+  selectedUser: null,
 };
 
 export const userSlice = createSlice({
@@ -21,8 +22,12 @@ export const userSlice = createSlice({
     allUser: (state, action) => {
       state.allUser = action.payload;
     },
+    setSelectedUser: (state, action) => {
+      state.selectedUser = action.payload;
+    },
   },
 });
 
-export const { loadUser, removeUser, allUser } = userSlice.actions;
+export const { loadUser, removeUser, allUser, setSelectedUser } =
+  userSlice.actions;
 export default userSlice.reducer;

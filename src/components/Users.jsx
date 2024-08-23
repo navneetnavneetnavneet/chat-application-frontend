@@ -1,14 +1,22 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { asyncSelectedUser } from "../store/actions/userActions";
 
 const Users = () => {
-  const { allUser } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+  const { allUser, selectedUser } = useSelector((state) => state.userReducer);
 
   return (
     <div className="users w-full h-[80vh] cursor-pointer flex flex-col overflow-x-hidden overflow-y-auto">
       {allUser ? (
         allUser.map((user) => (
-          <div key={user._id} className="user hover:bg-zinc-600 hover:text-white duration-300 px-2 py-2 flex items-center gap-2 border-b border-zinc-600">
+          <div
+            onClick={() => dispatch(asyncSelectedUser(user))}
+            key={user._id}
+            className={`${
+              selectedUser?._id === user?._id ? "bg-zinc-600 text-white" : ""
+            } user hover:bg-zinc-600 hover:text-white duration-300 px-2 py-2 flex items-center gap-2 border-b border-zinc-600`}
+          >
             <div className="w-[3vw] h-[3vw] bg-red-900 rounded-full overflow-hidden">
               <img
                 className="w-full h-full object-cover"
