@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 const Conversation = () => {
   const dispatch = useDispatch();
-  const { selectedUser } = useSelector((state) => state.userReducer);
+  const { selectedUser, user } = useSelector((state) => state.userReducer);
   const { messages } = useSelector((state) => state.messageReducer);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const Conversation = () => {
     <div className="conversationArea w-full h-[80vh] overflow-x-hidden overflow-y-auto px-2 py-2">
       {messages &&
         messages.map((message) => (
-          <Message key={message._id} message={message} />
+          <Message key={message._id} message={message} user={user} selectedUser={selectedUser} />
         ))}
     </div>
   );
