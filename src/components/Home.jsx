@@ -1,8 +1,13 @@
 import React from 'react'
+import SideNav from './SideNav'
+import Container from './Container'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div className='w-full h-screen flex'>
+      <SideNav />
+      <Container />
+    </div>
   )
 }
 
