@@ -5,17 +5,18 @@ import TopNav from "./TopNav";
 import { useSelector } from "react-redux";
 
 const Container = () => {
-  const { selectedUser } = useSelector((state) => state.userReducer);
+  const { user, selectedUser } = useSelector((state) => state.userReducer);
   return (
     <div className="w-[75%] h-full bg-zinc-200">
-      {selectedUser ? (
+      {selectedUser && user ? (
         <>
           <TopNav />
           <Conversation />
           <MessageInput />
         </>
       ) : (
-        <div className="flex items-center justify-center w-full h-full">
+        <div className="flex flex-col gap-2 items-center justify-center w-full h-full">
+          <h1 className="text-5xl font-bold opacity-50">Hello, {user && user.fullName}</h1>
           <h1 className="text-3xl font-semibold opacity-50">
             Let's start conversation !
           </h1>

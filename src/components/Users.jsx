@@ -5,7 +5,6 @@ import { asyncSelectedUser } from "../store/actions/userActions";
 const Users = () => {
   const dispatch = useDispatch();
   const { allUser, selectedUser, onlineUsers } = useSelector((state) => state.userReducer);
-console.log(onlineUsers);
 
   return (
     <div className="users w-full h-[80vh] cursor-pointer flex flex-col overflow-x-hidden overflow-y-auto">
