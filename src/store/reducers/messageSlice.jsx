@@ -5,7 +5,7 @@ const initialState = {
 };
 
 export const messageSlice = createSlice({
-  name: "messsage",
+  name: "message",
   initialState,
   reducers: {
     setMessages: (state, action) => {
