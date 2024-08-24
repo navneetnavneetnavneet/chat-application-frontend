@@ -62,7 +62,7 @@ export const asyncSignoutUser = () => async (dispatch, getState) => {
 
 export const asyncGetAllUser = () => async (dispatch, getState) => {
   try {
-    const { data } = await axios.get("/users/");
+    const { data } = await axios.get("/users");
     dispatch(allUser(data.alluser));
   } catch (error) {
     console.log(error.response.data);

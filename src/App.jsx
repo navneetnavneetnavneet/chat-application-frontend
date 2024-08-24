@@ -6,11 +6,14 @@ import Signin from "./components/Signin";
 import { asyncGetAllUser, asyncLoadUser } from "./store/actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
+import { setSocket } from "./store/reducers/socketSlice";
+import { setOnlineUsers } from "./store/reducers/userSlice";
 
 const App = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useSelector((state) => state.userReducer);
+  const { socket } = useSelector((state) => state.socketReducer);
 
   useEffect(() => {
     dispatch(asyncLoadUser());
@@ -20,14 +23,31 @@ const App = () => {
     !isAuthenticated && navigate("/signin");
   }, [isAuthenticated]);
 
-  const [socket, setSocket] = useState(null);
-
   useEffect(() => {
     if (user) {
-      const socket = io("http://localhost:8080", {});
-      setSocket(socket);
+      const socket = io("http://localhost:8080", {
+        query: {
+          userId: user._id,
+        },
+      });
+
+      dispatch(setSocket(socket));
+
+      socket.on("getOnlineUsers", (onlineUsers) => {
+        dispatch(setOnlineUsers(onlineUsers));
+      });
+
+      // Clean up socket connection
+      return () => {
+        socket.close();
+      };
+    } else {
+      if (socket) {
+        socket.close();
+        dispatch(setSocket(null));
+      }
     }
-  }, [user]);
+  }, [user, dispatch]);
 
   return (
     <div>

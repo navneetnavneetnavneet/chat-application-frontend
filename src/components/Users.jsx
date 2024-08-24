@@ -4,7 +4,8 @@ import { asyncSelectedUser } from "../store/actions/userActions";
 
 const Users = () => {
   const dispatch = useDispatch();
-  const { allUser, selectedUser } = useSelector((state) => state.userReducer);
+  const { allUser, selectedUser, onlineUsers } = useSelector((state) => state.userReducer);
+console.log(onlineUsers);
 
   return (
     <div className="users w-full h-[80vh] cursor-pointer flex flex-col overflow-x-hidden overflow-y-auto">
@@ -28,7 +29,7 @@ const Users = () => {
               <h1 className="text-lg font-semibold leading-none">
                 {user.fullName}
               </h1>
-              <p className="text-xs">Lorem ipsum dolor sit amet.</p>
+              <p className="text-xs font-semibold text-zinc-400">{onlineUsers.includes(user._id) ? "online" : "offline"}</p>
             </div>
           </div>
         ))
