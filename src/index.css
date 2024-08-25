@@ -8,6 +8,6 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
+  border-radius: 10px;
   background-color: rgb(173, 171, 171);
 }
