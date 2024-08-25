@@ -1,5 +1,6 @@
 import React from "react";
 import Users from "./Users";
+import { Link } from "react-router-dom";
 
 const SideNav = () => {
   return (
@@ -12,9 +13,9 @@ const SideNav = () => {
         <button className="px-4 py-2 rounded-md text-lg font-semibold bg-zinc-500 hover:bg-zinc-600">
           Logout
         </button>
-        <button className="px-4 py-2 rounded-md text-lg font-semibold bg-zinc-500 hover:bg-zinc-600">
+        <Link to="/edit" className="px-4 py-2 rounded-md text-lg font-semibold bg-zinc-500 hover:bg-zinc-600">
           Edit
-        </button>
+        </Link>
       </div>
     </div>
   );
