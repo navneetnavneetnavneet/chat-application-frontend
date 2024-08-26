@@ -19,7 +19,7 @@ const Users = () => {
             } user w-full py-2 px-2 border-b border-zinc-600 flex items-center gap-2`}
           >
             <div className="w-[4vw] h-[4vw] rounded-full overflow-hidden">
-              <img src={user.profileImage} alt="" />
+              <img src={user.profileImage.url} alt="" />
             </div>
             <div className="">
               <h1 className="text-xl font-semibold leading-3">

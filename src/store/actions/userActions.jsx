@@ -60,6 +60,32 @@ export const asyncSignoutUser = () => async (dispatch, getState) => {
   }
 };
 
+export const asyncEditUser =
+  ({ fullName, username, email, profileImage, gender }) =>
+  async (dispatch, getState) => {
+    try {
+      const { data } = await axios.post(
+        "/users/edit",
+        {
+          fullName,
+          username,
+          email,
+          profileImage,
+          gender,
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      dispatch(asyncLoadUser());
+      console.log(data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
 export const asyncGetAllUser = () => async (dispatch, getState) => {
   try {
     const { data } = await axios.get("/users");

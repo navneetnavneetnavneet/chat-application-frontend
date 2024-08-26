@@ -1,26 +1,31 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncEditUser } from "../store/actions/userActions";
 
 const Edit = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userReducer);
 
   const [fullName, setFullName] = useState(user && user.fullName);
   const [username, setUsername] = useState(user && user.username);
   const [email, setEmail] = useState(user && user.email);
+  const [profileImage, setProfileImage] = useState();
   const [gender, setGender] = useState(user && user.gender);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     const user = {
       fullName,
       username,
       email,
+      profileImage,
       gender,
     };
-    console.log(user);
+    await dispatch(asyncEditUser(user));
+    navigate("/");
   };
 
   return (
@@ -30,7 +35,7 @@ const Edit = () => {
           <h1 className="text-5xl font-bold">Edit Profile</h1>
           <i
             onClick={() => navigate("/")}
-            class="ri-close-fill text-[1.4rem]"
+            className="ri-close-fill text-[1.4rem]"
           ></i>
         </div>
         <form
@@ -79,6 +84,20 @@ const Edit = () => {
               value={email}
               type="email"
               placeholder="Email"
+              className="w-full px-2 py-2 rounded-md outline-none border border-zinc-600 text-base"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="profileImage"
+              className="text-base font-semibold text-zinc-600"
+            >
+              Profile Image
+            </label>
+            <input
+              onChange={(e) => setProfileImage(e.target.files[0])}
+              type="file"
+              placeholder="ProfileImage URL"
               className="w-full px-2 py-2 rounded-md outline-none border border-zinc-600 text-base"
             />
           </div>

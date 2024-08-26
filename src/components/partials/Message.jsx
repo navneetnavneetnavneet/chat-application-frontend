@@ -26,13 +26,13 @@ const Message = ({ message }) => {
             {message.message}
           </p>
           <div className="w-[4vw] h-[4vw] rounded-full overflow-hidden">
-            <img src={user.profileImage} alt="" />
+            <img src={user.profileImage.url} alt="" />
           </div>
         </>
       ) : (
         <>
           <div className="w-[4vw] h-[4vw] rounded-full overflow-hidden">
-            <img src={selectedUser.profileImage} alt="" />
+            <img src={selectedUser.profileImage.url} alt="" />
           </div>
           <p className="bg-emerald-500 px-4 py-2 mb-1 rounded-tr-lg rounded-es-xl">
             {message.message}
