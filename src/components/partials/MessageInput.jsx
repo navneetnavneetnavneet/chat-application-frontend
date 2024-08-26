@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { asyncSendMessage } from "../../store/actions/messageActions";
+import { setMessages } from "../../store/reducers/messageSlice";
 
 const MessageInput = ({ selectedUser }) => {
   const dispatch = useDispatch();
+  const { socket } = useSelector((state) => state.socketReducer);
+  const { messages } = useSelector((state) => state.messageReducer);
 
   const [message, setMessage] = useState("");
   const sendeMessageHandler = (e) => {
@@ -14,7 +17,11 @@ const MessageInput = ({ selectedUser }) => {
 
   useEffect(() => {
     sendeMessageHandler;
-  }, [message, dispatch]);
+
+    socket?.on("newMessage", (newMessage) => {
+      dispatch(setMessages([...messages, newMessage]));
+    });
+  }, [messages, socket, setMessages]);
 
   return (
     <div className="w-full h-[10vh] border-t border-zinc-600">

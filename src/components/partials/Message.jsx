@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
 const Message = ({ message }) => {
+  const scroll = useRef();
   const { user, selectedUser } = useSelector((state) => state.userReducer);
+
+  useEffect(() => {
+    scroll.current.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
+    });
+  }, [message]);
 
   return (
     <div
+      ref={scroll}
       className={`w-fit max-w-[50%] ${
         user._id === message.senderId ? "ml-auto" : "mr-auto"
       } text-lg flex gap-1`}
@@ -22,7 +32,7 @@ const Message = ({ message }) => {
       ) : (
         <>
           <div className="w-[4vw] h-[4vw] rounded-full overflow-hidden">
-            <img src={user.profileImage} alt="" />
+            <img src={selectedUser.profileImage} alt="" />
           </div>
           <p className="bg-emerald-500 px-2 py-2 mb-1 rounded-md">
             {message.message}

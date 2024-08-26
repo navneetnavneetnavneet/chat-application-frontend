@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   isAuthenticated: false,
-  allUser: [],
+  allUser: null,
   selectedUser: null,
-  onlineUsers: [],
+  onlineUsers: null,
 };
 
 export const userSlice = createSlice({
@@ -33,6 +33,11 @@ export const userSlice = createSlice({
   },
 });
 
-export const { loadUser, removeUser, allUser, setSelectedUser, setOnlineUsers } =
-  userSlice.actions;
+export const {
+  loadUser,
+  removeUser,
+  allUser,
+  setSelectedUser,
+  setOnlineUsers,
+} = userSlice.actions;
 export default userSlice.reducer;

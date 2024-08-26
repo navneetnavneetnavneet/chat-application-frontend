@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Users = () => {
-  const { allUser, selectedUser } = useSelector((state) => state.userReducer);
+  const { allUser, selectedUser, onlineUsers } = useSelector(
+    (state) => state.userReducer
+  );
 
   return (
     <div className="w-full h-[80vh] overflow-x-hidden overflow-y-auto">
@@ -23,7 +25,9 @@ const Users = () => {
               <h1 className="text-xl font-semibold leading-3">
                 {user.fullName}
               </h1>
-              <p className="text-sm font-semibold">online</p>
+              <p className="text-sm font-semibold">
+                {onlineUsers && onlineUsers.includes(user?._id) ? "online" : "offline"}
+              </p>
             </div>
           </Link>
         ))}
