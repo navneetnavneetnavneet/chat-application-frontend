@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Edit = () => {
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.userReducer);
 
-  const [fullName, setFullName] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [gender, setGender] = useState("");
+  const [fullName, setFullName] = useState(user && user.fullName);
+  const [username, setUsername] = useState(user && user.username);
+  const [email, setEmail] = useState(user && user.email);
+  const [gender, setGender] = useState(user && user.gender);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -17,7 +18,6 @@ const Edit = () => {
       fullName,
       username,
       email,
-      password,
       gender,
     };
     console.log(user);
@@ -28,7 +28,10 @@ const Edit = () => {
       <div className="w-1/3 px-5 py-5 bg-zinc-50 rounded-md">
         <div className="w-full flex items-center justify-between">
           <h1 className="text-5xl font-bold">Edit Profile</h1>
-          <p onClick={() => navigate("/")}>(back)</p>
+          <i
+            onClick={() => navigate("/")}
+            class="ri-close-fill text-[1.4rem]"
+          ></i>
         </div>
         <form
           onSubmit={submitHandler}
@@ -76,21 +79,6 @@ const Edit = () => {
               value={email}
               type="email"
               placeholder="Email"
-              className="w-full px-2 py-2 rounded-md outline-none border border-zinc-600 text-base"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="password"
-              className="text-base font-semibold text-zinc-600"
-            >
-              Password
-            </label>
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-              type="password"
-              placeholder="Password"
               className="w-full px-2 py-2 rounded-md outline-none border border-zinc-600 text-base"
             />
           </div>

@@ -18,7 +18,7 @@ const Container = () => {
       dispatch(setSelectedUser(isSelectedUser));
       dispatch(asyncSelectedUserMessages(isSelectedUser?._id));
     }
-  }, [userId, isSelectedUser]);
+  }, [userId, isSelectedUser,dispatch]);
 
   return (
     <div className="w-[75%] h-full">

@@ -5,7 +5,7 @@ export const asyncSelectedUserMessages = (id) => async (dispatch, getState) => {
   try {
     const { data } = await axios.get(`/messages/${id}`);
     dispatch(setMessages(data ? data : []));
-    console.log(data);
+    // console.log(data);
   } catch (error) {
     console.log(error.response.data);
   }
