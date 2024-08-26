@@ -5,6 +5,7 @@ import MessageInput from "./MessageInput";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedUser } from "../../store/reducers/userSlice";
+import { asyncSelectedUserMessages } from "../../store/actions/messageActions";
 
 const Container = () => {
   const { userId } = useParams();
@@ -13,14 +14,17 @@ const Container = () => {
   const isSelectedUser = allUser && allUser.find((user) => user._id === userId);
 
   useEffect(() => {
-    userId && dispatch(setSelectedUser(isSelectedUser));
-  }, [userId]);
+    if (userId) {
+      dispatch(setSelectedUser(isSelectedUser));
+      dispatch(asyncSelectedUserMessages(isSelectedUser?._id));
+    }
+  }, [userId, isSelectedUser]);
 
   return (
     <div className="w-[75%] h-full">
       <TopNav />
       <MessageContainer />
-      <MessageInput />
+      <MessageInput selectedUser={isSelectedUser} />
     </div>
   );
 };

@@ -16,7 +16,7 @@ const MainRoutes = () => {
 
   useEffect(() => {
     dispatch(asyncLoadUser());
-    dispatch(asyncGetAllUser());
+    dispatch(asyncGetAllUser())
 
     isAuthenticated && navigate("/");
     !isAuthenticated && navigate("/signin");

@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { asyncSendMessage } from "../../store/actions/messageActions";
 
-const MessageInput = () => {
+const MessageInput = ({ selectedUser }) => {
+  const dispatch = useDispatch();
+
   const [message, setMessage] = useState("");
   const sendeMessageHandler = (e) => {
     e.preventDefault();
-    console.log(message);
+    dispatch(asyncSendMessage(selectedUser._id, message));
     setMessage("");
   };
+
+  useEffect(() => {
+    sendeMessageHandler;
+  }, [message, dispatch]);
 
   return (
     <div className="w-full h-[10vh] border-t border-zinc-600">
@@ -21,7 +29,9 @@ const MessageInput = () => {
           placeholder="message . . ."
           className="w-full px-2 py-2 rounded-md text-lg outline-none border-none"
         />
-        <button className="w-[4vw] h-[4vw] rounded-md bg-zinc-50">^</button>
+        <button className="px-4 py-2 rounded-md bg-zinc-50">
+          <i className="ri-send-plane-2-fill text-lg"></i>
+        </button>
       </form>
     </div>
   );
