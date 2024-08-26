@@ -69,10 +69,10 @@ export const asyncGetAllUser = () => async (dispatch, getState) => {
   }
 };
 
-export const asyncSelectedUser = (user) => async (dispatch, getState) => {
-  try {
-    dispatch(setSelectedUser(user));
-  } catch (error) {
-    console.log(error.response.data);
-  }
-};
+// export const asyncSelectedUser = (user) => async (dispatch, getState) => {
+//   try {
+//     dispatch(setSelectedUser(user));
+//   } catch (error) {
+//     console.log(error.response.data);
+//   }
+// };

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { asyncSignupUser } from "../store/actions/userActions";
 
 const Signup = () => {
+  const dispatch = useDispatch();
+
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -18,7 +22,7 @@ const Signup = () => {
       password,
       gender,
     };
-    console.log(user);
+    dispatch(asyncSignupUser(user));
   };
 
   return (
@@ -125,7 +129,12 @@ const Signup = () => {
             Sign Up
           </button>
         </form>
-        <p className="text-base font-semibold text-zinc-600 text-center w-full mt-5">Already have an account ? <Link to="/signin" className="text-blue-600">Sign In</Link></p>
+        <p className="text-base font-semibold text-zinc-600 text-center w-full mt-5">
+          Already have an account ?{" "}
+          <Link to="/signin" className="text-blue-600">
+            Sign In
+          </Link>
+        </p>
       </div>
     </div>
   );
