@@ -86,6 +86,31 @@ export const asyncEditUser =
     }
   };
 
+export const asyncForgetPassword = (email) => async (dispatch, getState) => {
+  try {
+    const { data } = await axios.post("/users/sendmail", { email });
+    console.log(data);
+    dispatch({
+      type: "URL_SEND_SUCCESS",
+      payload: data,
+    });
+    return data;
+  } catch (error) {
+    console.log(error.response.data);
+  }
+};
+
+export const asyncNewPassword =
+  (userId, password) => async (dispatch, getState) => {
+    try {
+      const { data } = await axios.post(`/users/forget-link/${userId}`, {
+        password,
+      });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
 export const asyncGetAllUser = () => async (dispatch, getState) => {
   try {
     const { data } = await axios.get("/users");

@@ -10,6 +10,8 @@ import { asyncGetAllUser, asyncLoadUser } from "../store/actions/userActions";
 import io from "socket.io-client";
 import { setSocket } from "../store/reducers/socketSlice";
 import { setOnlineUsers } from "../store/reducers/userSlice";
+import ForgetPassword from "../components/ForgetPassword";
+import NewPassword from "../components/NewPassword";
 
 const MainRoutes = () => {
   const navigate = useNavigate();
@@ -59,6 +61,8 @@ const MainRoutes = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/edit" element={<Edit />} />
+        <Route path="/forget_password" element={<ForgetPassword />} />
+        <Route path="/users/forget-link/:userId" element={<NewPassword />} />
       </Routes>
     </div>
   );
