@@ -26,17 +26,17 @@ const Signup = () => {
   };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center">
-      <div className="w-1/3 px-5 py-5 bg-zinc-50 rounded-md">
+    <div className="w-full h-screen flex items-center justify-center px-4">
+      <div className="w-full md:w-1/4 px-5 py-5 bg-zinc-50 rounded-md">
         <h1 className="text-5xl font-bold">Sign Up</h1>
         <form
           onSubmit={submitHandler}
-          className="w-full flex flex-col gap-3 mt-5"
+          className="w-full flex flex-col gap-3 mt-5 text-lg md:text-base"
         >
           <div>
             <label
               htmlFor="fullname"
-              className="text-base font-semibold text-zinc-600"
+              className="font-semibold text-zinc-600"
             >
               Full Name
             </label>
@@ -51,7 +51,7 @@ const Signup = () => {
           <div>
             <label
               htmlFor="username"
-              className="text-base font-semibold text-zinc-600"
+              className="font-semibold text-zinc-600"
             >
               Username
             </label>
@@ -66,7 +66,7 @@ const Signup = () => {
           <div>
             <label
               htmlFor="email"
-              className="text-base font-semibold text-zinc-600"
+              className="font-semibold text-zinc-600"
             >
               Email
             </label>
@@ -81,7 +81,7 @@ const Signup = () => {
           <div>
             <label
               htmlFor="password"
-              className="text-base font-semibold text-zinc-600"
+              className="font-semibold text-zinc-600"
             >
               Password
             </label>
@@ -102,7 +102,7 @@ const Signup = () => {
                 name="gender"
                 type="radio"
               />
-              <p className="text-base font-semibold text-zinc-600">Male</p>
+              <p className="font-semibold text-zinc-600">Male</p>
             </span>
             <span className="flex gap-1 items-center">
               <input
@@ -112,7 +112,7 @@ const Signup = () => {
                 name="gender"
                 type="radio"
               />
-              <p className="text-base font-semibold text-zinc-600">Female</p>
+              <p className="font-semibold text-zinc-600">Female</p>
             </span>
             <span className="flex gap-1 items-center">
               <input
@@ -122,14 +122,14 @@ const Signup = () => {
                 name="gender"
                 type="radio"
               />
-              <p className="text-base font-semibold text-zinc-600">Others</p>
+              <p className="font-semibold text-zinc-600">Others</p>
             </span>
           </div>
           <button className="px-2 py-2 rounded-md bg-blue-500 hover:bg-blue-600 duration-100 text-lg font-semibold text-white">
             Sign Up
           </button>
         </form>
-        <p className="text-base font-semibold text-zinc-600 text-center w-full mt-5">
+        <p className="text-lg md:text-base font-semibold text-zinc-600 text-center w-full mt-5">
           Already have an account ?{" "}
           <Link to="/signin" className="text-blue-600">
             Sign In
