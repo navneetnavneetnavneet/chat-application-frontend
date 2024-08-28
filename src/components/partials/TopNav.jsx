@@ -1,15 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const TopNav = () => {
+  const navigate = useNavigate();
   const { selectedUser, onlineUsers } = useSelector(
     (state) => state.userReducer
   );
 
   return (
-    <div className="w-full py-2 px-2 border-b border-zinc-600 flex items-center gap-2">
+    <div className="w-full py-2 px-2 border-b border-zinc-400 flex items-center gap-2">
+      <i onClick={() => navigate("/")} className="ri-arrow-left-line"></i>
       <div className="w-[12vw] h-[12vw] md:w-[4vw] md:h-[4vw] rounded-full overflow-hidden">
-        <img className="w-full h-full object-cover" src={selectedUser && selectedUser.profileImage.url} alt="" />
+        <img
+          className="w-full h-full object-cover"
+          src={selectedUser && selectedUser.profileImage.url}
+          alt=""
+        />
       </div>
       <div className="">
         <h1 className="text-xl font-semibold leading-5">

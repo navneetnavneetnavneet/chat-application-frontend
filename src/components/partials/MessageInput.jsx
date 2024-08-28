@@ -24,7 +24,7 @@ const MessageInput = ({ selectedUser }) => {
   }, [messages, socket, setMessages]);
 
   return (
-    <div className="w-full py-2 absolute bottom-0 border-t border-zinc-600">
+    <div className="w-full py-2 absolute bottom-0">
       <form
         onSubmit={sendeMessageHandler}
         className="w-full h-full px-2 flex items-center justify-between gap-2 text-xl font-semibold"
