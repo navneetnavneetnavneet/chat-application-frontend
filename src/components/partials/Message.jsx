@@ -16,25 +16,33 @@ const Message = ({ message }) => {
   return (
     <div
       ref={scroll}
-      className={`w-fit max-w-[50%] ${
+      className={`w-fit md:max-w-[50%] ${
         user._id === message.senderId ? "ml-auto" : "mr-auto"
-      } text-lg flex gap-1`}
+      } text-lg md:text-base font-semibold md:font-normal flex items-start justify-between gap-1`}
     >
       {user._id === message.senderId ? (
         <>
-          <p className="bg-red-500 px-4 py-2 mb-1 rounded-tr-lg rounded-es-xl">
+          <p className="w-fit mb-2 bg-red-500 leading-5 md:leading-4 px-3 py-2 rounded-tr-lg rounded-es-xl">
             {message.message}
           </p>
-          <div className="w-[4vw] h-[4vw] rounded-full overflow-hidden">
-            <img src={user.profileImage.url} alt="" />
+          <div className="mb-2 w-[8vw] h-[8vw] md:w-[2vw] md:h-[2vw] flex-shrink-0 rounded-full overflow-hidden">
+            <img
+              className="w-full h-full object-cover"
+              src={user.profileImage.url}
+              alt=""
+            />
           </div>
         </>
       ) : (
         <>
-          <div className="w-[4vw] h-[4vw] rounded-full overflow-hidden">
-            <img src={selectedUser.profileImage.url} alt="" />
+          <div className="mb-2 w-[8vw] h-[8vw] md:w-[2vw] md:h-[2vw] flex-shrink-0 rounded-full overflow-hidden">
+            <img
+              className="w-full h-full object-cover"
+              src={selectedUser.profileImage.url}
+              alt=""
+            />
           </div>
-          <p className="bg-emerald-500 px-4 py-2 mb-1 rounded-tr-lg rounded-es-xl">
+          <p className="mb-2 w-fit bg-emerald-500 leading-5 md:leading-4 px-3 py-2 rounded-tr-lg rounded-es-xl">
             {message.message}
           </p>
         </>

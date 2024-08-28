@@ -24,20 +24,20 @@ const MessageInput = ({ selectedUser }) => {
   }, [messages, socket, setMessages]);
 
   return (
-    <div className="w-full h-[10vh] border-t border-zinc-600">
+    <div className="w-full py-2 absolute bottom-0 border-t border-zinc-600">
       <form
         onSubmit={sendeMessageHandler}
-        className="w-full h-full px-2 flex items-center justify-between gap-2"
+        className="w-full h-full px-2 flex items-center justify-between gap-2 text-xl font-semibold"
       >
         <input
           onChange={(e) => setMessage(e.target.value)}
           value={message}
           type="text"
           placeholder="message . . ."
-          className="w-full px-2 py-2 rounded-md text-lg outline-none border-none"
+          className="w-full px-2 py-3 rounded-md outline-none border-none"
         />
-        <button className="px-4 py-2 rounded-md bg-zinc-50">
-          <i className="ri-send-plane-2-fill text-lg"></i>
+        <button className="px-4 py-3 rounded-md bg-zinc-50">
+          <i className="ri-send-plane-2-fill"></i>
         </button>
       </form>
     </div>

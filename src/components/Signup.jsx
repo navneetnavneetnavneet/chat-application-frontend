@@ -34,10 +34,7 @@ const Signup = () => {
           className="w-full flex flex-col gap-3 mt-5 text-lg md:text-base"
         >
           <div>
-            <label
-              htmlFor="fullname"
-              className="font-semibold text-zinc-600"
-            >
+            <label htmlFor="fullname" className="font-semibold text-zinc-600">
               Full Name
             </label>
             <input
@@ -49,10 +46,7 @@ const Signup = () => {
             />
           </div>
           <div>
-            <label
-              htmlFor="username"
-              className="font-semibold text-zinc-600"
-            >
+            <label htmlFor="username" className="font-semibold text-zinc-600">
               Username
             </label>
             <input
@@ -64,10 +58,7 @@ const Signup = () => {
             />
           </div>
           <div>
-            <label
-              htmlFor="email"
-              className="font-semibold text-zinc-600"
-            >
+            <label htmlFor="email" className="font-semibold text-zinc-600">
               Email
             </label>
             <input
@@ -79,10 +70,7 @@ const Signup = () => {
             />
           </div>
           <div>
-            <label
-              htmlFor="password"
-              className="font-semibold text-zinc-600"
-            >
+            <label htmlFor="password" className="font-semibold text-zinc-600">
               Password
             </label>
             <input

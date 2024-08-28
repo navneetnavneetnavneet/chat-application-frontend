@@ -7,7 +7,7 @@ const HomePage = () => {
   return (
     <div className="w-full h-screen flex">
       <SideNav />
-      <div className="w-[75%] h-full flex flex-col items-center justify-center">
+      <div className="w-[75%] h-full hidden md:flex flex-col items-center justify-center">
         <h1 className="text-5xl font-bold text-zinc-400">
           Hello, {user && user.fullName}!
         </h1>
