@@ -66,7 +66,7 @@ const MainRoutes = () => {
         <Route path="/edit" element={<Edit />} />
         <Route path="/forget_password" element={<ForgetPassword />} />
         <Route path="/users/forget-link/:userId" element={<NewPassword />} />
-        <Route path="/user/status/:userId" element={<StatusShow />} />
+        <Route path="/status/:userId" element={<StatusShow />} />
       </Routes>
     </div>
   );

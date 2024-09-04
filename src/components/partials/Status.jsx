@@ -15,7 +15,7 @@ const Status = () => {
         className="relative w-[12vw] h-[12vw] md:w-[4vw] md:h-[4vw] rounded-full flex-shrink-0 border-2 border-zinc-400 p-[1px]"
       >
         <Link
-          to={`/status/user/${status.user._id}`}
+          to={`/status/${status.user._id}`}
           className="w-full flex h-full rounded-full overflow-hidden"
         >
           <img
