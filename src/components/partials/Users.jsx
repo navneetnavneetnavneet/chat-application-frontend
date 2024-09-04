@@ -8,7 +8,7 @@ const Users = () => {
   );
 
   return (
-    <div className="w-full h-[80vh] overflow-x-hidden overflow-y-auto">
+    <div className="w-full h-[70vh] overflow-x-hidden overflow-y-auto">
       {allUser &&
         allUser.map((user) => (
           <Link

@@ -11,3 +11,7 @@
   border-radius: 10px;
   background-color: rgb(173, 171, 171);
 }
+
+::-webkit-scrollbar{
+  display: none;
+}

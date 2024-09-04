@@ -12,6 +12,8 @@ import { setSocket } from "../store/reducers/socketSlice";
 import { setOnlineUsers } from "../store/reducers/userSlice";
 import ForgetPassword from "../components/ForgetPassword";
 import NewPassword from "../components/NewPassword";
+import { asyncGetAllStatus } from "../store/actions/statusActions";
+import StatusShow from "../components/partials/StatusShow";
 
 const MainRoutes = () => {
   const navigate = useNavigate();
@@ -24,6 +26,7 @@ const MainRoutes = () => {
   useEffect(() => {
     dispatch(asyncLoadUser());
     dispatch(asyncGetAllUser());
+    dispatch(asyncGetAllStatus());
 
     isAuthenticated && navigate("/");
     !isAuthenticated && navigate("/signin");
@@ -63,6 +66,7 @@ const MainRoutes = () => {
         <Route path="/edit" element={<Edit />} />
         <Route path="/forget_password" element={<ForgetPassword />} />
         <Route path="/users/forget-link/:userId" element={<NewPassword />} />
+        <Route path="/user/status/:userId" element={<StatusShow />} />
       </Routes>
     </div>
   );
