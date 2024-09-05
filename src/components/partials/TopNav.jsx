@@ -22,7 +22,13 @@ const TopNav = () => {
         <h1 className="text-xl font-semibold leading-5">
           {selectedUser && selectedUser.fullName}
         </h1>
-        <p className="text-sm md:text-xs font-semibold leading-5">
+        <p
+          className={`${
+            onlineUsers && onlineUsers.includes(selectedUser?._id)
+              ? "text-green-500"
+              : "text-black"
+          } text-sm md:text-xs font-semibold leading-5`}
+        >
           {onlineUsers && onlineUsers.includes(selectedUser?._id)
             ? "online"
             : "offline"}

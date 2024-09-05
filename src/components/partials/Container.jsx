@@ -21,7 +21,7 @@ const Container = () => {
   }, [userId, isSelectedUser,dispatch]);
 
   return (
-    <div className="w-full md:w-[75%] h-full relative">
+    <div className="w-full md:w-[100%] h-full relative">
       <TopNav />
       <MessageContainer />
       <MessageInput selectedUser={isSelectedUser} />

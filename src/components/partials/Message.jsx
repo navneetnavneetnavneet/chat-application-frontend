@@ -22,7 +22,7 @@ const Message = ({ message }) => {
     >
       {user._id === message.senderId ? (
         <>
-          <p className="w-fit mb-2 bg-red-500 leading-5 md:leading-4 px-3 py-2 rounded-tr-lg rounded-es-xl">
+          <p className="w-fit mb-2 bg-[#FA921D] text-white leading-5 md:leading-4 px-3 py-2 rounded-tr-lg rounded-es-xl">
             {message.message}
           </p>
           <div className="mb-2 w-[8vw] h-[8vw] md:w-[2vw] md:h-[2vw] flex-shrink-0 rounded-full overflow-hidden">
@@ -42,7 +42,7 @@ const Message = ({ message }) => {
               alt=""
             />
           </div>
-          <p className="mb-2 w-fit bg-emerald-500 leading-5 md:leading-4 px-3 py-2 rounded-tr-lg rounded-es-xl">
+          <p className="mb-2 w-fit bg-[#2383BF] text-white leading-5 md:leading-4 px-3 py-2 rounded-tr-lg rounded-es-xl">
             {message.message}
           </p>
         </>

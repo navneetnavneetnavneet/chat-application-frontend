@@ -9,12 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { asyncGetAllUser, asyncLoadUser } from "../store/actions/userActions";
 import io from "socket.io-client";
 import { setSocket } from "../store/reducers/socketSlice";
-import { setOnlineUsers } from "../store/reducers/userSlice";
+import { allUser, setOnlineUsers } from "../store/reducers/userSlice";
 import ForgetPassword from "../components/ForgetPassword";
 import NewPassword from "../components/NewPassword";
 import { asyncGetAllStatus } from "../store/actions/statusActions";
 import StatusShow from "../components/partials/StatusShow";
 import StatusUpload from "../components/partials/StatusUpload";
+import { setAllStatus } from "../store/reducers/statusSlice";
+import { setMessages } from "../store/reducers/messageSlice";
 
 const MainRoutes = () => {
   const navigate = useNavigate();
@@ -31,6 +33,14 @@ const MainRoutes = () => {
 
     isAuthenticated && navigate("/");
     !isAuthenticated && navigate("/signin");
+
+    return () => {
+      dispatch(allUser([]));
+      dispatch(setOnlineUsers([]));
+      dispatch(setAllStatus([]));
+      dispatch(setSocket(null));
+      dispatch(setMessages([]));
+    };
   }, [isAuthenticated, dispatch]);
 
   // socket.io

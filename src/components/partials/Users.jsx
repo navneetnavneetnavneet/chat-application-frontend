@@ -26,10 +26,10 @@ const Users = () => {
               />
             </div>
             <div className="">
-              <h1 className="text-[5vw] md:text-[1.2vw] font-semibold md:leading-4 leading-5">
+              <h1 className="text-[5vw] md:text-[1.5vw] font-semibold leading-5">
                 {user.fullName}
               </h1>
-              <p className="text-sm md:text-xs font-semibold leading-5">
+              <p className="text-[3vw] md:text-[.8vw] font-semibold">
                 {onlineUsers && onlineUsers.includes(user?._id)
                   ? "online"
                   : "offline"}

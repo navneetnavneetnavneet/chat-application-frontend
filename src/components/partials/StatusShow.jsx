@@ -28,11 +28,10 @@ const StatusShow = () => {
           navigate("/");
         }
       }
+      return () => clearInterval(interval);
+    }else{
+      navigate("/")
     }
-
-    return () => {
-      clearInterval(interval);
-    };
   }, [currentIndex, progress, statusUser]);
 
   const nextStatusHandler = () => {
@@ -51,6 +50,10 @@ const StatusShow = () => {
     } else {
       navigate("/");
     }
+  };
+
+  const messageHandler = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -97,14 +100,17 @@ const StatusShow = () => {
           className="w-1/2 absolute top-0 right-0 h-full"
         ></div>
         <div className="w-full py-2 px-2 absolute bottom-0 left-0">
-          <form className="border-2 border-zinc-100 w-full rounded-full px-2 py-2 flex items-center gap-1">
+          <form
+            onSubmit={messageHandler}
+            className="border-2 border-zinc-100 w-full rounded-full px-2 py-2 flex items-center gap-1"
+          >
             <input
               type="text"
               placeholder="message . . ."
               className="w-full px-2 rounded-full outline-none bg-transparent text-white text-xl"
             />
             <button className="px-3 py-2 rounded-full bg-zinc-500 text-white text-xl font-semibold">
-            <i className="ri-send-plane-fill"></i>
+              <i className="ri-send-plane-fill"></i>
             </button>
           </form>
         </div>
