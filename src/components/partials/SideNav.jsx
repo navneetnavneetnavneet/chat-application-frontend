@@ -1,13 +1,14 @@
 import React from "react";
 import Users from "./Users";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { asyncSignoutUser } from "../../store/actions/userActions";
 import Status from "./Status";
 
 const SideNav = () => {
   const dispatch = useDispatch();
-  let id = "jsdljsdjlfj";
+  const { allStatus } = useSelector((state) => state.statusReducer);
+  const { user } = useSelector((state) => state.userReducer);
 
   return (
     <div className="w-full relative md:w-[25%] h-full bg-zinc-100 md:flex md:flex-col">
@@ -15,7 +16,11 @@ const SideNav = () => {
         <h1 className="text-[9vw] md:text-[2.7vw] font-bold">WhatsApp</h1>
       </div>
       <div className="w-full py-3 border-b border-zinc-400 flex items-center justify-items-start gap-x-2 px-4 overflow-x- overflow-y-hidden whitespace-nowrap">
-        <Status />
+        {user?.status.length === 0 ? <Status user={user} /> : ""}
+        {allStatus &&
+          allStatus.map((status) => (
+            <Status key={status._id} user={status.user} />
+          ))}
       </div>
       <Users />
       <div className="w-full absolute bottom-0 py-4 md:py-3 flex items-center justify-between px-4">

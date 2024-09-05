@@ -103,8 +103,8 @@ const StatusShow = () => {
               placeholder="message . . ."
               className="w-full px-2 rounded-full outline-none bg-transparent text-white text-xl"
             />
-            <button className="px-3 py-2 rounded-full bg-zinc-600 text-white text-xl font-semibold">
-              send
+            <button className="px-3 py-2 rounded-full bg-zinc-500 text-white text-xl font-semibold">
+            <i className="ri-send-plane-fill"></i>
             </button>
           </form>
         </div>

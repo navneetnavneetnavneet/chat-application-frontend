@@ -14,6 +14,7 @@ import ForgetPassword from "../components/ForgetPassword";
 import NewPassword from "../components/NewPassword";
 import { asyncGetAllStatus } from "../store/actions/statusActions";
 import StatusShow from "../components/partials/StatusShow";
+import StatusUpload from "../components/partials/StatusUpload";
 
 const MainRoutes = () => {
   const navigate = useNavigate();
@@ -67,6 +68,7 @@ const MainRoutes = () => {
         <Route path="/forget_password" element={<ForgetPassword />} />
         <Route path="/users/forget-link/:userId" element={<NewPassword />} />
         <Route path="/status/:userId" element={<StatusShow />} />
+        <Route path="/status/upload" element={<StatusUpload />} />
       </Routes>
     </div>
   );
