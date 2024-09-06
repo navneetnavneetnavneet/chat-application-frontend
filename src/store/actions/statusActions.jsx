@@ -30,3 +30,12 @@ export const asyncUploadStatus =
       console.log(error.response.data);
     }
   };
+
+export const asyncDeleteStatus = (id) => async (dispatch, getState) => {
+  try {
+    const { data } = await axios.get(`/status/delete/${id}`);
+    dispatch(asyncGetAllStatus());
+  } catch (error) {
+    console.log(error.response.data);
+  }
+};

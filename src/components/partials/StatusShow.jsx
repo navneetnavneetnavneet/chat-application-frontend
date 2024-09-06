@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { asyncDeleteStatus } from "../../store/actions/statusActions";
 
 const StatusShow = () => {
   const navigate = useNavigate();
   const { userId } = useParams();
+  const dispatch = useDispatch();
 
+  const { user } = useSelector((state) => state.userReducer);
   const { allStatus } = useSelector((state) => state.statusReducer);
   const statusUser = allStatus && allStatus.find((s) => s.user?._id === userId);
 
@@ -29,8 +32,8 @@ const StatusShow = () => {
         }
       }
       return () => clearInterval(interval);
-    }else{
-      navigate("/")
+    } else {
+      navigate("/");
     }
   }, [currentIndex, progress, statusUser]);
 
@@ -56,6 +59,8 @@ const StatusShow = () => {
     e.preventDefault();
   };
 
+  // console.log(statusUser.user?.status[currentIndex]._id);
+
   return (
     statusUser && (
       <div className="w-full h-screen relative">
@@ -63,20 +68,35 @@ const StatusShow = () => {
           style={{
             background: ` linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4))`,
           }}
-          className="user absolute top-0 left-0 w-full px-4 py-2 border-b border-zinc-600 flex items-center gap-2"
+          className="user text-white absolute top-0 left-0 w-full px-4 py-2 border-b border-zinc-600 flex items-center justify-between"
         >
-          <div className="w-[12vw] h-[12vw] md:w-[4vw] md:h-[4vw] rounded-full overflow-hidden">
-            <img
-              className="w-full h-full object-cover"
-              src={statusUser.user?.profileImage.url}
-              alt=""
-            />
+          <div className="flex items-center gap-2">
+            <div className="w-[12vw] h-[12vw] md:w-[4vw] md:h-[4vw] rounded-full overflow-hidden">
+              <img
+                className="w-full h-full object-cover"
+                src={statusUser.user?.profileImage.url}
+                alt=""
+              />
+            </div>
+            <div className="">
+              <h1 className="text-[5vw] md:text-[1.2vw] font-semibold md:leading-4 leading-5">
+                {statusUser.user?.fullName}
+              </h1>
+            </div>
           </div>
-          <div className="">
-            <h1 className="text-[5vw] md:text-[1.2vw] text-white font-semibold md:leading-4 leading-5">
-              {statusUser.user?.fullName}
-            </h1>
-          </div>
+          {statusUser.user._id === user?._id ? (
+            <i
+              onClick={() =>
+                dispatch(
+                  asyncDeleteStatus(statusUser.user?.status[currentIndex]._id)
+                )
+              }
+              className="ri-delete-bin-line z-[10] text-[1.4rem]"
+            ></i>
+          ) : (
+            ""
+          )}
+
           <div className="w-full h-[3px] bg-zinc-600 absolute bottom-0 left-0">
             <div
               style={{ width: `${progress}%`, transition: "width 0.1s linear" }}
