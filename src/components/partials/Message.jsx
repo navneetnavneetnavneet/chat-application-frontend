@@ -22,10 +22,20 @@ const Message = ({ message }) => {
     >
       {user._id === message.senderId ? (
         <>
-          <p className="w-fit mb-2 bg-[#FA921D] text-white leading-5 md:leading-4 px-3 py-2 rounded-tr-lg rounded-es-xl">
-            {message.message}
-          </p>
-          <div className="mb-2 w-[8vw] h-[8vw] md:w-[2vw] md:h-[2vw] flex-shrink-0 rounded-full overflow-hidden">
+          <div className="mb-4">
+            <p className="w-fit bg-[#FA921D] text-white leading-5 md:leading-4 px-3 py-2 rounded-tr-lg rounded-es-xl">
+              {message.message}
+            </p>
+            <div className="flex justify-end items-center gap-x-2">
+              <span>
+                {new Date(message.createdAt).toLocaleTimeString("en-IN", {
+                  hour: "numeric",
+                  minute: "numeric",
+                })}
+              </span>
+            </div>
+          </div>
+          <div className="mb-4 w-[8vw] h-[8vw] md:w-[2vw] md:h-[2vw] flex-shrink-0 rounded-full overflow-hidden">
             <img
               className="w-full h-full object-cover"
               src={user.profileImage.url}
@@ -35,16 +45,26 @@ const Message = ({ message }) => {
         </>
       ) : (
         <>
-          <div className="mb-2 w-[8vw] h-[8vw] md:w-[2vw] md:h-[2vw] flex-shrink-0 rounded-full overflow-hidden">
+          <div className="mb-4 w-[8vw] h-[8vw] md:w-[2vw] md:h-[2vw] flex-shrink-0 rounded-full overflow-hidden">
             <img
               className="w-full h-full object-cover"
               src={selectedUser.profileImage.url}
               alt=""
             />
           </div>
-          <p className="mb-2 w-fit bg-[#2383BF] text-white leading-5 md:leading-4 px-3 py-2 rounded-tr-lg rounded-es-xl">
-            {message.message}
-          </p>
+          <div className="mb-4">
+            <p className="w-fit bg-[#2383BF] text-white leading-5 md:leading-4 px-3 py-2 rounded-tr-lg rounded-es-xl">
+              {message.message}
+            </p>
+            <div className="flex justify-start items-center gap-x-2">
+              <span>
+                {new Date(message.createdAt).toLocaleTimeString("en-IN", {
+                  hour: "numeric",
+                  minute: "numeric",
+                })}
+              </span>
+            </div>
+          </div>
         </>
       )}
     </div>
