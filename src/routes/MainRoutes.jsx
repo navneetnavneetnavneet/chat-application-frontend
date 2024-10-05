@@ -24,8 +24,6 @@ const MainRoutes = () => {
 
   const { isAuthenticated, user } = useSelector((state) => state.userReducer);
 
-  // const { socket } = useSelector((state) => state.socketReducer);
-
   useEffect(() => {
     dispatch(asyncLoadUser());
     dispatch(asyncGetAllUser());
