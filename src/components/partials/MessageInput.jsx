@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncSendMessage } from "../../store/actions/messageActions";
 import { setMessages } from "../../store/reducers/messageSlice";
+import { SocketContext } from "../../context/socketContext";
 
 const MessageInput = ({ selectedUser }) => {
+  const { socket } = useContext(SocketContext);
   const dispatch = useDispatch();
-  const { socket } = useSelector((state) => state.socketReducer);
   const { messages } = useSelector((state) => state.messageReducer);
 
   const [message, setMessage] = useState("");
   const sendeMessageHandler = (e) => {
     e.preventDefault();
-    dispatch(asyncSendMessage(selectedUser._id, message));
-    setMessage("");
+    if (selectedUser?._id && message) {
+      dispatch(asyncSendMessage(selectedUser._id, message));
+      setMessage("");
+    }
   };
 
   useEffect(() => {
