@@ -3,14 +3,12 @@ import {
   loadUser,
   removeUser,
   allUser,
-  setSelectedUser,
 } from "../reducers/userSlice";
 
 export const asyncLoadUser = () => async (dispatch, getState) => {
   try {
     const { data } = await axios.get("/users/currentuser");
     data && dispatch(loadUser(data));
-    // console.log(data);
   } catch (error) {
     console.log(error.response.data);
   }
@@ -27,8 +25,6 @@ export const asyncSignupUser =
         password,
         gender,
       });
-      //   console.log(data);
-
       dispatch(asyncLoadUser());
     } catch (error) {
       console.log(error.response.data);
@@ -43,8 +39,6 @@ export const asyncSigninUser =
         email,
         password,
       });
-      //   console.log(data);
-
       dispatch(asyncLoadUser());
     } catch (error) {
       console.log(error.response.data);
@@ -80,7 +74,6 @@ export const asyncEditUser =
         }
       );
       dispatch(asyncLoadUser());
-      console.log(data);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -89,7 +82,6 @@ export const asyncEditUser =
 export const asyncForgetPassword = (email) => async (dispatch, getState) => {
   try {
     const { data } = await axios.post("/users/sendmail", { email });
-    console.log(data);
     dispatch({
       type: "URL_SEND_SUCCESS",
       payload: data,
@@ -114,16 +106,9 @@ export const asyncNewPassword =
 export const asyncGetAllUser = () => async (dispatch, getState) => {
   try {
     const { data } = await axios.get("/users");
-    dispatch(allUser(data.alluser));
+    dispatch(allUser(data?.alluser));
   } catch (error) {
     console.log(error.response.data);
   }
 };
 
-// export const asyncSelectedUser = (user) => async (dispatch, getState) => {
-//   try {
-//     dispatch(setSelectedUser(user));
-//   } catch (error) {
-//     console.log(error.response.data);
-//   }
-// };

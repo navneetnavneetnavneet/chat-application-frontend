@@ -1,11 +1,10 @@
 import axios from "../../utils/axios";
 import { setAllStatus } from "../reducers/statusSlice";
+import { asyncLoadUser } from "./userActions";
 
 export const asyncGetAllStatus = () => async (dispatch, getState) => {
   try {
     const { data } = await axios.get("/status");
-    console.log(data.allStatus);
-
     dispatch(setAllStatus(data.allStatus));
   } catch (error) {
     console.log(error.response.data);
@@ -25,6 +24,7 @@ export const asyncUploadStatus =
       }
     );
     dispatch(asyncGetAllStatus());
+    dispatch(asyncLoadUser());
     try {
     } catch (error) {
       console.log(error.response.data);
@@ -35,6 +35,7 @@ export const asyncDeleteStatus = (id) => async (dispatch, getState) => {
   try {
     const { data } = await axios.get(`/status/delete/${id}`);
     dispatch(asyncGetAllStatus());
+    dispatch(asyncLoadUser());
   } catch (error) {
     console.log(error.response.data);
   }

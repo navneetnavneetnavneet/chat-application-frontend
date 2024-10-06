@@ -37,9 +37,9 @@ const MessageInput = ({ selectedUser }) => {
           value={message}
           type="text"
           placeholder="message . . ."
-          className="w-full px-2 py-3 rounded-md outline-none border-none"
+          className="w-full px-4 py-3 rounded-full outline-none border-none"
         />
-        <button className="px-4 py-3 rounded-md bg-zinc-50">
+        <button className="px-4 py-3 rounded-full bg-zinc-50">
           <i className="ri-send-plane-2-fill"></i>
         </button>
       </form>

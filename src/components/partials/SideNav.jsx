@@ -22,7 +22,7 @@ const SideNav = () => {
         </div>
       </div>
       <div className="w-full py-3 border-b border-zinc-400 flex items-center justify-items-start gap-x-2 px-4 overflow-x- overflow-y-hidden whitespace-nowrap">
-        {user?.status.length === 0 ? <Status user={user} /> : ""}
+        {user?.status?.length === 0 ? <Status user={user} /> : ""}
         {allStatus &&
           allStatus.map((status) => (
             <Status key={status._id} user={status.user} />
@@ -32,15 +32,17 @@ const SideNav = () => {
       <div className="w-full text-white absolute bottom-0 py-4 md:py-3 flex items-center justify-between px-4">
         <button
           onClick={() => dispatch(asyncSignoutUser())}
-          className="px-4 py-2 rounded-md text-lg font-semibold bg-zinc-500 hover:bg-zinc-600"
+          className="px-4 py-2 rounded-full flex items-center gap-1 bg-zinc-600 hover:bg-zinc-700"
         >
-          Logout
+          <i className="ri-logout-box-line"></i>
+          <span>Logout</span>
         </button>
         <Link
           to="/edit"
-          className="px-4 py-2 rounded-md text-lg font-semibold bg-zinc-500 hover:bg-zinc-600"
+          className="px-4 py-2 rounded-full flex items-center gap-1 bg-zinc-600 hover:bg-zinc-700"
         >
-          Edit
+          <i className="ri-pencil-line"></i>
+          <span>Edit</span>
         </Link>
       </div>
     </div>

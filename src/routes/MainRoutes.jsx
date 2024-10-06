@@ -25,9 +25,11 @@ const MainRoutes = () => {
   const { isAuthenticated, user } = useSelector((state) => state.userReducer);
 
   useEffect(() => {
-    dispatch(asyncLoadUser());
-    dispatch(asyncGetAllUser());
-    dispatch(asyncGetAllStatus());
+    if (isAuthenticated) {
+      dispatch(asyncLoadUser());
+      dispatch(asyncGetAllUser());
+      dispatch(asyncGetAllStatus());
+    }
 
     isAuthenticated && navigate("/");
     !isAuthenticated && navigate("/signin");

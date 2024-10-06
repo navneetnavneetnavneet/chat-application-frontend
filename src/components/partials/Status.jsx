@@ -7,7 +7,7 @@ const Status = ({ user }) => {
 
   return (
     user && (
-      <div className="relative w-[12vw] h-[12vw] md:w-[4vw] md:h-[4vw] rounded-full flex-shrink-0 border-2 border-zinc-400 p-[1px]">
+      <div className="relative w-[12vw] h-[12vw] md:w-[4vw] md:h-[4vw] rounded-full flex-shrink-0 border md:border-2 border-zinc-400 p-[1px]">
         <Link
           to={`/status/${user._id}`}
           className="w-full flex h-full rounded-full overflow-hidden"
@@ -18,7 +18,7 @@ const Status = ({ user }) => {
             alt=""
           />
         </Link>
-        {loggedInUser && loggedInUser?.user._id === user._id ? (
+        {loggedInUser && loggedInUser?.user?._id === user?._id ? (
           <Link
             to="/status/upload"
             className="w-[6vw] h-[6vw] md:w-[1.5vw] md:h-[1.5vw] border-2 border-zinc-600 flex items-center justify-center absolute z-[100] bottom-0 right-0 translate-x-1/4 translate-y-1/4 rounded-full bg-zinc-200"
