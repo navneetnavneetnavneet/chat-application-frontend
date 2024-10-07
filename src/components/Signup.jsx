@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { asyncSignupUser } from "../store/actions/userActions";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,18 @@ const Signup = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    if (!fullName || !username || !email || !password || !gender) {
+      return toast.warning("All fields are required !");
+    }
+
+    if (password.length <= 5) {
+      return toast.warning("Password should have atleast 6 characters !");
+    }
+
+    if (password.length > 15) {
+      return toast.warning("Password should not axceed 15 characters !");
+    }
+
     const user = {
       fullName,
       username,
@@ -23,6 +36,7 @@ const Signup = () => {
       gender,
     };
     dispatch(asyncSignupUser(user));
+    toast.success("User Register Successfully");
   };
 
   return (

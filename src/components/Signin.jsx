@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { asyncSigninUser } from "../store/actions/userActions";
+import { toast } from "react-toastify";
 
 const Signin = () => {
   const dispatch = useDispatch();
@@ -12,11 +13,16 @@ const Signin = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    if (!email || !password) {
+      return toast.warning("Email or Password is required !");
+    }
+
     const user = {
       email,
       password,
     };
     dispatch(asyncSigninUser(user));
+    // toast.success("User Login Successfully");
 
     setEmail("");
     setPassword("");
@@ -31,10 +37,7 @@ const Signin = () => {
           className="w-full flex flex-col gap-3 mt-5 text-lg md:text-base"
         >
           <div>
-            <label
-              htmlFor="email"
-              className=" font-semibold text-zinc-600"
-            >
+            <label htmlFor="email" className=" font-semibold text-zinc-600">
               Email
             </label>
             <input
@@ -46,10 +49,7 @@ const Signin = () => {
             />
           </div>
           <div>
-            <label
-              htmlFor="password"
-              className=" font-semibold text-zinc-600"
-            >
+            <label htmlFor="password" className=" font-semibold text-zinc-600">
               Password
             </label>
             <input

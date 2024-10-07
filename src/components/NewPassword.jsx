@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { asyncNewPassword } from "../store/actions/userActions";
+import { toast } from "react-toastify";
 
 const NewPassword = () => {
   const navigate = useNavigate();
@@ -9,10 +10,23 @@ const NewPassword = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
+  if (!password) {
+    return toast.warning("Password is required !");
+  }
+
+  if (password.length <= 5) {
+    return toast.warning("Password should have atleast 6 characters !");
+  }
+
+  if (password.length > 15) {
+    return toast.warning("Password should not axceed 15 characters !");
+  }
+
   const changePasswordHandler = (e) => {
     e.preventDefault();
     dispatch(asyncNewPassword(userId, password));
     navigate("/signin");
+    toast.success("Password Changed Successfully");
   };
 
   return (

@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncEditUser } from "../store/actions/userActions";
+import { toast } from "react-toastify";
 
 const Edit = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const Edit = () => {
     };
     await dispatch(asyncEditUser(user));
     navigate("/");
+    toast.success("Edit Profile Successfully");
   };
 
   return (

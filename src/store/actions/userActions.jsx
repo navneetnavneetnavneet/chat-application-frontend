@@ -1,9 +1,5 @@
 import axios from "../../utils/axios";
-import {
-  loadUser,
-  removeUser,
-  allUser,
-} from "../reducers/userSlice";
+import { loadUser, removeUser, allUser } from "../reducers/userSlice";
 
 export const asyncLoadUser = () => async (dispatch, getState) => {
   try {
@@ -111,4 +107,3 @@ export const asyncGetAllUser = () => async (dispatch, getState) => {
     console.log(error.response.data);
   }
 };
-

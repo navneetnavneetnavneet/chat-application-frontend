@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { asyncUploadStatus } from "../../store/actions/statusActions";
+import { toast } from "react-toastify";
 
 const StatusUpload = () => {
   const imageRef = useRef();
@@ -26,6 +27,7 @@ const StatusUpload = () => {
     };
     await dispatch(asyncUploadStatus(uploadStatus));
     navigate("/");
+    toast.success("Status Uploaded Successfully");
   };
 
   return (

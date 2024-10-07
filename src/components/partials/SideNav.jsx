@@ -4,11 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { asyncSignoutUser } from "../../store/actions/userActions";
 import Status from "./Status";
 import logo from "../../../public/chatlogo.png";
+import { toast } from "react-toastify";
 
 const SideNav = () => {
   const dispatch = useDispatch();
   const { allStatus } = useSelector((state) => state.statusReducer);
   const { user } = useSelector((state) => state.userReducer);
+
+  const logoutHandler = () => {
+    dispatch(asyncSignoutUser());
+    toast.success("User Logout Successfully");
+  };
 
   return (
     <div className="w-full relative md:w-[25%] md:border-r border-zinc-400 h-full bg-zinc-100 md:flex md:flex-col">
@@ -31,7 +37,7 @@ const SideNav = () => {
       <Users />
       <div className="w-full text-white absolute bottom-0 py-4 md:py-3 flex items-center justify-between px-4">
         <button
-          onClick={() => dispatch(asyncSignoutUser())}
+          onClick={logoutHandler}
           className="px-4 py-2 rounded-full flex items-center gap-1 bg-zinc-600 hover:bg-zinc-700"
         >
           <i className="ri-logout-box-line"></i>

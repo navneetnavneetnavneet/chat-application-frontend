@@ -14,7 +14,7 @@ const Container = () => {
   const isSelectedUser = allUser && allUser.find((user) => user._id === userId);
 
   useEffect(() => {
-    if (userId) {
+    if (userId && isSelectedUser) {
       dispatch(setSelectedUser(isSelectedUser));
       dispatch(asyncSelectedUserMessages(isSelectedUser?._id));
     }
