@@ -3,137 +3,167 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { asyncSignupUser } from "../store/actions/userActions";
 import { toast } from "react-toastify";
+import chatlogo from "/chatlogo.png";
+import { useForm } from "react-hook-form";
 
 const Signup = () => {
   const dispatch = useDispatch();
 
-  const [fullName, setFullName] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [gender, setGender] = useState("");
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    if (!fullName || !username || !email || !password || !gender) {
-      return toast.warning("All fields are required !");
-    }
-
-    if (password.length <= 5) {
-      return toast.warning("Password should have atleast 6 characters !");
-    }
-
-    if (password.length > 15) {
-      return toast.warning("Password should not axceed 15 characters !");
-    }
-
-    const user = {
-      fullName,
-      username,
-      email,
-      password,
-      gender,
-    };
-    dispatch(asyncSignupUser(user));
+  const onSubmit = (userData) => {
+    dispatch(asyncSignupUser(userData));
     toast.success("User Register Successfully");
+    reset();
   };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center px-4">
-      <div className="w-full md:w-1/4 px-5 py-5 bg-zinc-50 rounded-md">
-        <h1 className="text-5xl font-bold">Sign Up</h1>
+    <div className="w-full h-screen flex items-center justify-center bg-zinc-200">
+      <div className="w-[35%] rounded-xl bg-white px-20 pb-5">
+        <div className="flex items-center justify-center flex-col">
+          <div className="w-20 h-20">
+            <img
+              className="w-full h-full object-cover overflow-hidden"
+              src={chatlogo}
+              alt=""
+            />
+          </div>
+          <h1 className="text-2xl font-bold">
+            Welcome to Chat<spanc className="text-orange-400">X</spanc>
+          </h1>
+          <h4 className="mt-3 text-center leading-none text-base text-zinc-400 font-semibold">
+            Register to create your first account and start exploring the chat
+            in Chat<span>X</span>.
+          </h4>
+        </div>
         <form
-          onSubmit={submitHandler}
-          className="w-full flex flex-col gap-3 mt-5 text-lg md:text-base"
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full flex flex-col gap-2 mt-5 text-lg md:text-base"
         >
           <div>
-            <label htmlFor="fullname" className="font-semibold text-zinc-600">
+            <label htmlFor="fullname" className="font-semibold">
               Full Name
             </label>
             <input
-              onChange={(e) => setFullName(e.target.value)}
-              value={fullName}
+              {...register("fullName", { required: true })}
+              name="fullName"
               type="text"
               placeholder="Full Name"
-              className="w-full px-2 py-2 rounded-md outline-none border border-zinc-600 text-base"
+              className="w-full px-2 py-2 bg-zinc-100 font-medium rounded-md outline-none border border-zinc-400 text-base"
             />
+            {errors?.fullName?.type === "required" && (
+              <span className="text-xs text-red-500 font-semibold">
+                This field is required
+              </span>
+            )}
           </div>
           <div>
-            <label htmlFor="username" className="font-semibold text-zinc-600">
+            <label htmlFor="username" className="font-semibold">
               Username
             </label>
             <input
-              onChange={(e) => setUsername(e.target.value)}
-              value={username}
+              {...register("username", { required: true })}
+              name="username"
               type="text"
-              placeholder="UserName"
-              className="w-full px-2 py-2 rounded-md outline-none border border-zinc-600 text-base"
+              placeholder="Username"
+              className="w-full px-2 py-2 bg-zinc-100 font-medium rounded-md outline-none border border-zinc-400 text-base"
             />
+            {errors?.username?.type === "required" && (
+              <span className="text-xs text-red-500 font-semibold">
+                This field is required
+              </span>
+            )}
           </div>
           <div>
-            <label htmlFor="email" className="font-semibold text-zinc-600">
+            <label htmlFor="email" className="font-semibold">
               Email
             </label>
             <input
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
+              {...register("email", { required: true })}
+              name="email"
               type="email"
               placeholder="Email"
-              className="w-full px-2 py-2 rounded-md outline-none border border-zinc-600 text-base"
+              className="w-full px-2 py-2 bg-zinc-100 font-medium rounded-md outline-none border border-zinc-400 text-base"
             />
+            {errors?.email?.type === "required" && (
+              <span className="text-xs text-red-500 font-semibold">
+                This field is required
+              </span>
+            )}
           </div>
           <div>
-            <label htmlFor="password" className="font-semibold text-zinc-600">
+            <label htmlFor="password" className="font-semibold">
               Password
             </label>
             <input
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
+              {...register("password", {
+                required: true,
+                minLength: 6,
+                maxLength: 15,
+              })}
+              name="password"
               type="password"
               placeholder="Password"
-              className="w-full px-2 py-2 rounded-md outline-none border border-zinc-600 text-base"
+              className="w-full px-2 py-2 bg-zinc-100 font-medium rounded-md outline-none border border-zinc-400 text-base"
             />
+            {errors?.password?.type === "required" && (
+              <span className="text-xs text-red-500 font-semibold">
+                This field is required
+              </span>
+            )}
+            {errors?.password?.type === "minLength" && (
+              <span className="text-xs text-red-500 font-semibold">
+                Password should have atleast 6 characters
+              </span>
+            )}
+            {errors?.password?.type === "maxLength" && (
+              <span className="text-xs text-red-500 font-semibold">
+                Password should not exceed 15 characters
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-5">
             <span className="flex gap-1 items-center">
               <input
+                {...register("gender", { required: true })}
                 value="male"
-                onChange={(e) => setGender(e.target.value)}
-                checked={gender === "male" ? true : false}
                 name="gender"
                 type="radio"
               />
-              <p className="font-semibold text-zinc-600">Male</p>
+              <p className="font-semibold">Male</p>
             </span>
             <span className="flex gap-1 items-center">
               <input
+                {...register("gender", { required: true })}
                 value="female"
-                onChange={(e) => setGender(e.target.value)}
-                checked={gender === "female" ? true : false}
                 name="gender"
                 type="radio"
               />
-              <p className="font-semibold text-zinc-600">Female</p>
+              <p className="font-semibold">Female</p>
             </span>
             <span className="flex gap-1 items-center">
               <input
+                {...register("gender", { required: true })}
                 value="others"
-                onChange={(e) => setGender(e.target.value)}
-                checked={gender === "others" ? true : false}
                 name="gender"
                 type="radio"
               />
-              <p className="font-semibold text-zinc-600">Others</p>
+              <p className="font-semibold">Others</p>
             </span>
           </div>
-          <button className="px-2 py-2 rounded-md bg-blue-500 hover:bg-blue-600 duration-100 text-lg font-semibold text-white">
+          <button className="px-2 py-2 rounded-md bg-blue-500 hover:bg-blue-400 duration-100 text-lg font-semibold text-white">
             Sign Up
           </button>
         </form>
-        <p className="text-lg md:text-base font-semibold text-zinc-600 text-center w-full mt-5">
+        <p className="text-lg md:text-base font-semibold text-center w-full mt-5">
           Already have an account ?{" "}
-          <Link to="/signin" className="text-blue-600">
+          <Link to="/signin" className="text-blue-400">
             Sign In
           </Link>
         </p>
