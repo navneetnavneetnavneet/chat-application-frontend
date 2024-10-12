@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { asyncSignupUser } from "../store/actions/userActions";
@@ -37,7 +36,7 @@ const Signup = () => {
           <h1 className="text-2xl font-bold">
             Welcome to Chat<spanc className="text-orange-400">X</spanc>
           </h1>
-          <h4 className="mt-3 text-center leading-none text-base text-zinc-400 font-semibold">
+          <h4 className="mt-3 text-center leading-tight text-base text-zinc-400 font-semibold">
             Register to create your first account and start exploring the chat
             in Chat<span>X</span>.
           </h4>
