@@ -2,8 +2,9 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { asyncSigninUser } from "../store/actions/userActions";
 import { toast } from "react-toastify";
-import chatlogo from "/chatlogo.png";
 import { useForm } from "react-hook-form";
+import chatlogo from "/chatlogo.png";
+import background from "/background.jpg";
 
 const Signin = () => {
   const dispatch = useDispatch();
@@ -23,8 +24,16 @@ const Signin = () => {
   };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-zinc-200">
-      <div className="w-[35%] rounded-xl bg-white px-20 pb-5">
+    <div
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+      className="w-full h-screen px-4 py-2 flex items-center justify-center"
+    >
+      <div className="w-full md:w-[40%] md:px-20 rounded-xl bg-white px-10 pb-5">
         <div className="flex items-center justify-center flex-col">
           <div className="w-20 h-20">
             <img
@@ -34,7 +43,10 @@ const Signin = () => {
             />
           </div>
           <h1 className="text-2xl font-bold">
-            Welcome back to Chat<spanc className="text-orange-400">X</spanc>
+            Welcome back to{" "}
+            <span className="text-[#2383BF] font-bold">
+              Chat<span className="text-[#FA921D]">X</span>
+            </span>
           </h1>
           <h4 className="mt-3 text-center leading-tight text-base text-zinc-400 font-semibold">
             Please enter your details to sign in.
@@ -42,7 +54,7 @@ const Signin = () => {
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="w-full flex flex-col gap-2 mt-5 text-lg md:text-base"
+          className="w-full flex flex-col gap-5 md:gap-2 mt-5 text-lg md:text-base"
         >
           <div>
             <label htmlFor="email" className="font-semibold">
@@ -92,7 +104,7 @@ const Signin = () => {
               </span>
             )}
           </div>
-          <button className="px-2 py-2 rounded-md bg-blue-500 hover:bg-blue-400 duration-100 text-lg font-semibold text-white">
+          <button className="px-2 py-2 mt-3 rounded-md bg-blue-500 hover:bg-blue-400 duration-100 text-lg font-semibold text-white">
             Sign In
           </button>
         </form>
