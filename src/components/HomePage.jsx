@@ -1,10 +1,11 @@
 import React from "react";
 import SideNav from "./partials/SideNav";
 import { useSelector } from "react-redux";
+import Loading from "./Loading";
 
 const HomePage = () => {
   const { user } = useSelector((state) => state.userReducer);
-  return (
+  return user ? (
     <div className="w-full h-screen flex">
       <SideNav />
       <div className="w-[75%] h-full hidden md:flex flex-col items-center justify-center">
@@ -16,6 +17,8 @@ const HomePage = () => {
         </p>
       </div>
     </div>
+  ) : (
+    <Loading />
   );
 };
 

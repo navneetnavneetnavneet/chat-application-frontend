@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedUser } from "../../store/reducers/userSlice";
 import { asyncSelectedUserMessages } from "../../store/actions/messageActions";
+import Loading from "../Loading";
 
 const Container = () => {
   const { userId } = useParams();
@@ -18,14 +19,16 @@ const Container = () => {
       dispatch(setSelectedUser(isSelectedUser));
       dispatch(asyncSelectedUserMessages(isSelectedUser?._id));
     }
-  }, [userId, isSelectedUser,dispatch]);
+  }, [userId, isSelectedUser, dispatch]);
 
-  return (
+  return isSelectedUser ? (
     <div className="w-full md:w-[100%] h-full relative">
       <TopNav />
       <MessageContainer />
       <MessageInput selectedUser={isSelectedUser} />
     </div>
+  ) : (
+    <Loading />
   );
 };
 

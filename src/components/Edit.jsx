@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncEditUser } from "../store/actions/userActions";
 import { toast } from "react-toastify";
+import Loading from "./Loading";
 
 const Edit = () => {
   const navigate = useNavigate();
@@ -42,12 +43,12 @@ const Edit = () => {
     toast.success("Edit Profile Successfully");
   };
 
-  return (
+  return user ? (
     <div className="w-full md:w-1/4 md:mx-auto bg-zinc-100 h-screen flex flex-col items-center">
       <div className="w-full h-10 px-4 flex items-center justify-between">
         <div
           onClick={() => navigate(-1)}
-          className="flex items-center gap-1 text-blue-600"
+          className="cursor-pointer flex items-center gap-1 text-blue-600"
         >
           <i className="ri-arrow-left-line"></i>{" "}
           <span className="font-semibold">Back</span>
@@ -158,6 +159,8 @@ const Edit = () => {
         </form>
       </div>
     </div>
+  ) : (
+    <Loading />
   );
 };
 
