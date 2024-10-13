@@ -26,6 +26,10 @@ const Edit = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
+    if (!fullName || !username || !email || !profileImage || !gender) {
+      return toast.warning("All fields are required !");
+    }
+
     const user = {
       fullName,
       username,
@@ -45,7 +49,8 @@ const Edit = () => {
           onClick={() => navigate(-1)}
           className="flex items-center gap-1 text-blue-600"
         >
-          <i className="ri-arrow-left-line"></i> <span>Back</span>
+          <i className="ri-arrow-left-line"></i>{" "}
+          <span className="font-semibold">Back</span>
         </div>
       </div>
       <div className="my-10 md:my-5">
@@ -56,7 +61,10 @@ const Edit = () => {
             alt=""
           />
         </div>
-        <button onClick={imageHandler} className="text-blue-500 capitalize">
+        <button
+          onClick={imageHandler}
+          className="text-blue-500 font-semibold capitalize"
+        >
           edit picture
         </button>
       </div>

@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import axios from "../../utils/axios";
 import { loadUser, removeUser, allUser } from "../reducers/userSlice";
 
@@ -6,7 +7,7 @@ export const asyncLoadUser = () => async (dispatch, getState) => {
     const { data } = await axios.get("/users/currentuser");
     data && dispatch(loadUser(data));
   } catch (error) {
-    console.log(error.response.data);
+    toast.error(error.response.data);
   }
 };
 
@@ -23,7 +24,7 @@ export const asyncSignupUser =
       });
       dispatch(asyncLoadUser());
     } catch (error) {
-      console.log(error.response.data);
+      toast.error(error.response.data);
     }
   };
 
@@ -37,7 +38,7 @@ export const asyncSigninUser =
       });
       dispatch(asyncLoadUser());
     } catch (error) {
-      console.log(error.response.data);
+      toast.error(error.response.data);
     }
   };
 
@@ -46,7 +47,7 @@ export const asyncSignoutUser = () => async (dispatch, getState) => {
     const { data } = await axios.get("/users/signout");
     dispatch(removeUser());
   } catch (error) {
-    console.log(error.response.data);
+    toast.error(error.response.data);
   }
 };
 
@@ -71,7 +72,7 @@ export const asyncEditUser =
       );
       dispatch(asyncLoadUser());
     } catch (error) {
-      console.log(error.response.data);
+      toast.error(error.response.data);
     }
   };
 
@@ -84,7 +85,7 @@ export const asyncForgetPassword = (email) => async (dispatch, getState) => {
     });
     return data;
   } catch (error) {
-    console.log(error.response.data);
+    toast.error(error.response.data);
   }
 };
 
@@ -95,7 +96,7 @@ export const asyncNewPassword =
         password,
       });
     } catch (error) {
-      console.log(error.response.data);
+      toast.error(error.response.data);
     }
   };
 
@@ -104,6 +105,6 @@ export const asyncGetAllUser = () => async (dispatch, getState) => {
     const { data } = await axios.get("/users");
     dispatch(allUser(data?.alluser));
   } catch (error) {
-    console.log(error.response.data);
+    toast.error(error.response.data);
   }
 };

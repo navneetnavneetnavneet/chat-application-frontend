@@ -28,7 +28,7 @@ const Signin = () => {
       style={{
         backgroundImage: `url(${background})`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "left",
         backgroundRepeat: "no-repeat",
       }}
       className="w-full h-screen px-4 py-2 flex items-center justify-center"

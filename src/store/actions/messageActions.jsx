@@ -1,5 +1,6 @@
 import axios from "../../utils/axios";
 import { setMessages } from "../reducers/messageSlice";
+import { toast } from "react-toastify";
 
 export const asyncSelectedUserMessages = (id) => async (dispatch, getState) => {
   try {
@@ -7,7 +8,7 @@ export const asyncSelectedUserMessages = (id) => async (dispatch, getState) => {
 
     dispatch(setMessages(data ? data : []));
   } catch (error) {
-    console.log(error.response.data);
+    toast.error(error.response.data);
   }
 };
 
@@ -28,10 +29,10 @@ export const asyncSendMessage =
           },
         }
       );
-      console.log(data);
+      // console.log(data);
 
       dispatch(setMessages([...messages, data.newMessage]));
     } catch (error) {
-      console.log(error.response.data);
+      toast.error(error.response.data);
     }
   };

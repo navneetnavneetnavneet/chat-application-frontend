@@ -25,7 +25,7 @@ const Message = ({ message }) => {
         <>
           <div className="mb-4 text-white flex flex-col items-end">
             {message.media && message.media?.url !== "" && (
-              <div className="bg-emerald-400 rounded-lg overflow-hidden">
+              <div className="rounded-lg overflow-hidden">
                 {message.media?.fileType === "image" && (
                   <img
                     className="w-80 h-80 object-cover"
@@ -91,7 +91,7 @@ const Message = ({ message }) => {
           </div>
           <div className="mb-4 text-white flex flex-col items-start">
             {message.media && message.media?.url !== "" && (
-              <div className="bg-emerald-400 rounded-lg overflow-hidden">
+              <div className="rounded-lg overflow-hidden">
                 {message.media?.fileType === "image" && (
                   <img
                     className="w-80 h-80 object-cover"

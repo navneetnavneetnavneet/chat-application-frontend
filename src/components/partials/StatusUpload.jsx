@@ -31,25 +31,28 @@ const StatusUpload = () => {
   };
 
   return (
-    <div className="w-full h-screen">
-      <div className="w-full flex items-center justify-between px-4 py-2">
-        <Link to="/" className="text-lg flex items-center gap-1">
+    <div className="w-full h-screen md:w-1/4 md:mx-auto bg-zinc-100">
+      <div className="w-full flex items-center justify-between font-semibold px-4 py-2">
+        <Link to="/" className="text-sm flex items-center gap-1">
           <i className="ri-home-line"></i> Home
         </Link>
         <h1 className="text-lg">Upload Status</h1>
-        <Link to="/edit" className="text-lg flex items-center gap-1">
+        <Link to="/edit" className="text-sm flex items-center gap-1">
           <i className="ri-pencil-line"></i> Edit
         </Link>
       </div>
       <div className="flex flex-col pt-20 items-center gap-2">
-        <div className="image w-[25vw] h-[25vw] rounded-full border-2 border-zinc-800 flex items-center justify-center">
+        <div className="image w-[25vw] h-[25vw] md:w-[6vw] md:h-[6vw] rounded-full border-2 border-zinc-800 flex items-center justify-center">
           <i className="text-5xl font-light ri-image-line"></i>
         </div>
-        <button onClick={imageHandler} className="text-blue-500 capitalize">
+        <button
+          onClick={imageHandler}
+          className="text-blue-500 font-semibold capitalize"
+        >
           select picture
         </button>
       </div>
-      <form onSubmit={submitHandler} className="w-full px-6 py-3 mt-10">
+      <form onSubmit={submitHandler} className="w-full px-6 py-3 mt-5">
         <input
           hidden
           onChange={handleImageChange}

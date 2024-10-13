@@ -105,11 +105,21 @@ const StatusShow = () => {
           </div>
         </div>
         <div className="w-full h-full overflow-hidden">
-          <img
-            className="w-full h-full object-cover"
-            src={statusUser.user.status[currentIndex].image.url}
-            alt=""
-          />
+          {statusUser.user.status[currentIndex].image.fileType === "image" && (
+            <img
+              className="w-full h-full object-cover"
+              src={statusUser.user.status[currentIndex].image.url}
+              alt=""
+            />
+          )}
+          {statusUser.user.status[currentIndex].image.fileType === "video" && (
+            <video
+              className="w-full h-full object-cover"
+              autoPlay={true}
+              muted={true}
+              src={statusUser.user.status[currentIndex].image.url}
+            ></video>
+          )}
         </div>
         <div
           onClick={previousStatusHandler}
